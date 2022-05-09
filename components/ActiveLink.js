@@ -10,8 +10,12 @@ const ActiveLink = ({ children, activeClassName, ...props }) => {
   // pages/index.js will be matched via props.href
   // pages/about.js will be matched via props.href
   // pages/[slug].js will be matched via props.as
+
+  const addTrailingSlash = (url) => url.replace(/\/?$/, '/');
+  const href = props.href && addTrailingSlash(props.href);
+  const as = props.as && addTrailingSlash(props.as);
   const className =
-    asPath === props.href || asPath === props.as
+    asPath === href || asPath === as
       ? `${childClassName} ${activeClassName}`.trim()
       : childClassName;
 
