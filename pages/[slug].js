@@ -23,7 +23,7 @@ export default function PostDetails({ post, posts }) {
   // const [relatedPosts, setRelatedPosts] = React.useState(posts.slice(0, 10));
   // const [hasNextPageRelatedPost, setHasNextPageRelatedPost] = React.useState(true);
   const [observer, setObserver] = React.useState({
-    observe: () => { },
+    observe: () => {},
   });
   // const handleLoadMore = () => {
   //   if (!hasNextPage) return false;
@@ -217,7 +217,7 @@ export default function PostDetails({ post, posts }) {
           <div>
             <h4>Recent Posts</h4>
             <div sx={{ display: 'flex', flexWrap: 'wrap' }}>
-              {filteredPosts.map(p => (
+              {filteredPosts.map((p) => (
                 <div
                   key={p.id}
                   sx={{
@@ -227,7 +227,7 @@ export default function PostDetails({ post, posts }) {
                     textAlign: 'left',
                   }}
                 >
-                  <Link href={`/${p.slug}`} >
+                  <Link href={`/${p.slug}`}>
                     <a sx={{ display: 'flex', cursor: 'pointer' }}>
                       <div sx={{ flex: '0 0 33%' }}>
                         <img src={p.medium.url.proxy} alt="" />
@@ -268,6 +268,7 @@ export async function getServerSideProps({ params }) {
             first_name
             last_name
             display_name
+            slug
             id
           }
           tags {
@@ -388,7 +389,7 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       post: data.post,
-      posts: data.posts
+      posts: data.posts,
     },
   };
 }

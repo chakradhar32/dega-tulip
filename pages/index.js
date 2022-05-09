@@ -4,12 +4,11 @@ import gql from 'graphql-tag';
 import Homepage from 'components/Homepage';
 import Head from 'next/head';
 
-export default function Home({ data }) {
+export default function Home(props) {
+  const { data } = props;
+
   return (
     <>
-      <Head>
-        <title>{data.space.site_title} </title>
-      </Head>
       <Homepage data={data} />
     </>
   );
@@ -27,6 +26,7 @@ export async function getServerSideProps(context) {
               first_name
               last_name
               display_name
+              slug
             }
             categories {
               slug
@@ -54,6 +54,7 @@ export async function getServerSideProps(context) {
               first_name
               last_name
               display_name
+              slug
             }
             categories {
               slug

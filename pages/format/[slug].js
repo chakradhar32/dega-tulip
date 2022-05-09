@@ -19,7 +19,7 @@ function FormatPage({ data }) {
           sx={{
             mt: (theme) => `${theme.space.layout4}`,
             mb: (theme) => `${theme.space.layout2}`,
-            textAlign: 'center',
+            px: (theme) => theme.space.layout2,
             fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
           }}
         >
@@ -73,6 +73,7 @@ export async function getServerSideProps({ params }) {
               first_name
               last_name
               display_name
+              slug
             }
             categories {
               slug

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'; // eslint-disable-line no-un
 import { jsx } from 'theme-ui';
 import gql from 'graphql-tag';
 import parseEditorJsData from 'src/utils/parseEditorJsData';
-import FormatPageLayout from 'components/FormatPageLayout';
+import PostGrid from 'components/PostGrid';
 
 import { client } from 'store/client';
 import Head from 'next/head';
@@ -34,10 +34,10 @@ function CategoryDetailsAll({ data }) {
       >
         <h1
           sx={{
-            textAlign: 'center',
             fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
             mb: (theme) => `${theme.space.spacing5}`,
             textTransform: 'capitalize',
+            px: (theme) => theme.space.layout2,
           }}
         >
           {item.name}
@@ -73,7 +73,7 @@ function CategoryDetailsAll({ data }) {
       <Head>
         <title> {data.category.name} </title>
       </Head>
-      <FormatPageLayout
+      <PostGrid
         type="category"
         posts={data.posts.nodes}
         formats={data.formats.nodes}
@@ -115,6 +115,7 @@ export async function getServerSideProps({ params }) {
               first_name
               last_name
               display_name
+              slug
             }
             categories {
               slug
