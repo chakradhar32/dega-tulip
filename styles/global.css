@@ -26,7 +26,7 @@ pre {
 }
 a {
   background-color: transparent;
-  display:inline-block
+  display: inline-block;
 }
 abbr[title] {
   border-bottom: none;
@@ -440,12 +440,12 @@ div {
   color: #3b82f6;
 }
 .active::after {
-  content: "";
-  width:50%;
-  height:2px;
+  content: '';
+  width: 50%;
+  height: 2px;
   display: block;
-  margin-top:0.25rem;
-  background:#3b82f6;
+  margin-top: 0.25rem;
+  background: #3b82f6;
   color: #3b82f6;
   border-bottom: 2px solid #3b82f6;
 }
