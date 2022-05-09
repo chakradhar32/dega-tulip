@@ -1,8 +1,6 @@
 /** @jsx jsx */
 /** @jsxRuntime classic */
-
 import React from 'react'; // eslint-disable-line no-unused-vars
-import gql from 'graphql-tag';
 import { jsx } from 'theme-ui';
 import {
   FaEnvelope,
@@ -12,12 +10,14 @@ import {
   FaLinkedin,
   FaTwitterSquare,
 } from 'react-icons/fa';
-import FormatPageLayout from 'components/FormatPageLayout';
+
+import PostGrid from 'components/PostGrid';
+import gql from 'graphql-tag';
 import { client } from 'store/client';
 import Head from 'next/head';
 
-function UserDetailsFormat({ data }) {
-  //const { dega } = data;
+function UserDetailsAll({ data }) {
+  const { dega } = data;
   const getIcon = (name) => {
     switch (name) {
       case 'twitter':
@@ -57,19 +57,18 @@ function UserDetailsFormat({ data }) {
         )}
         <h1
           sx={{
-            textAlign: 'center',
             fontSize: (theme) => `${theme.fontSizes.h4}`,
             mb: (theme) => `${theme.space.spacing5}`,
             textTransform: 'capitalize',
+            px: (theme) => theme.space.layout2,
           }}
         >
           {name}
         </h1>
         {item.description && (
-          <p sx={{ textAlign: 'center', pb: (theme) => `${theme.space.spacing5}` }}>
-            {item.description}
-          </p>
+          <p sx={{ pb: (theme) => `${theme.space.spacing5}` }}>{item.description}</p>
         )}
+
         <div sx={{ display: 'flex', justifyContent: 'center' }}>
           {item.social_media_urls &&
             Object.keys(item.social_media_urls).map((name) => (
@@ -96,7 +95,7 @@ function UserDetailsFormat({ data }) {
       <Head>
         <title>{name}</title>
       </Head>
-      <FormatPageLayout
+      <PostGrid
         type="author"
         posts={data.posts.nodes}
         formats={data.formats.nodes}
@@ -108,18 +107,19 @@ function UserDetailsFormat({ data }) {
   );
 }
 
-export default UserDetailsFormat;
+export default UserDetailsAll;
 
 export async function getServerSideProps({ params }) {
-  const { data } = await client.query({
+  const { data, error } = await client.query({
     query: gql`
-      query ($id: Int!, $formatSlug: String!) {
-        user(id: $id) {
+      query ($slug: String!) {
+        user(slug: $slug) {
           id
           first_name
           last_name
           email
           display_name
+          slug
           social_media_urls
           description
           medium {
@@ -134,45 +134,46 @@ export async function getServerSideProps({ params }) {
             name
           }
         }
-        posts(users: { ids: [$id] }, formats: { slugs: [$formatSlug] }) {
+        posts(users: { slugs: [$slug] }) {
           nodes {
             users {
               id
               first_name
               last_name
               display_name
+              slug
             }
             categories {
               slug
               name
+            }
+            format {
+              name
+              slug
             }
             medium {
               alt_text
               url
               dimensions
             }
-            format {
-              name
-              slug
-            }
             published_date
             id
-            excerpt
             status
             subtitle
             title
+            excerpt
             slug
           }
         }
       }
     `,
     variables: {
-      id: params.id,
-      formatSlug: params.formatSlug,
+      slug: params.slug,
     },
   });
+  console.log({ data, error });
 
-  if (!data || !data.user) {
+  if (!data) {
     return {
       notFound: true,
     };
