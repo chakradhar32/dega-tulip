@@ -7,7 +7,7 @@ import Layout from 'components/Layout';
 import 'styles/global.css';
 import { client } from 'store/client';
 import { gql } from 'graphql-tag';
-import App from 'next/app'
+import App from 'next/app';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => {
@@ -18,13 +18,12 @@ Router.events.on('routeChangeComplete', () => {
 });
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function MyApp({ Component, pageProps, layoutData }) {
-  console.log({ pageProps, layoutData })
+function MyApp({ Component, pageProps, props }) {
   // return <Component {...pageProps} />;
   return (
     <ThemeProvider theme={theme}>
-      <Layout data={layoutData}>
-        <Component {...pageProps} />
+      <Layout data={props?.layoutData}>
+        <Component {...pageProps} {...props} />
       </Layout>
     </ThemeProvider>
   );
@@ -71,17 +70,15 @@ MyApp.getInitialProps = async (appContext) => {
             }
           }
         }
-      
-
       }
     `,
   });
-  console.log({ layoutData })
+
   return {
     props: {
       ...appProps,
-      layoutData
-    }
+      layoutData,
+    },
   };
 };
 
