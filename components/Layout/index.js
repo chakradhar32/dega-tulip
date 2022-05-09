@@ -20,7 +20,7 @@ const Layout = ({ children, data }) => {
       >
         {space.fav_icon && <link rel="icon" href={`${space.fav_icon?.url?.proxy}`} />}
       </Seo> */}
-      <Navbar data={data} />
+      {data && <Navbar data={data} />}
       <main
         style={{ maxWidth: '1560px' }}
         sx={{
@@ -29,7 +29,6 @@ const Layout = ({ children, data }) => {
           color: (theme) => `${theme.colors.textPrimary}`,
           lineHeight: 'normal',
           pt: [(theme) => `${theme.space.spacing5}`, 0, 0],
-          mt: '2rem',
           minHeight: 'calc(100vh - 60px)',
           mx: 'auto',
           display: 'flex',

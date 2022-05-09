@@ -5,10 +5,10 @@ import React, { useState, useEffect } from 'react';
 import { jsx } from 'theme-ui';
 import { FaHome, FaBars } from 'react-icons/fa';
 import Link from 'next/link';
+import ActiveLink from '../ActiveLink';
 
 export default function NavBar({ logo, data }) {
   const { menu, categories, space } = data;
-  console.log({ menu, categories, space });
   const mainMenu = menu.nodes.filter((i) => i.slug === 'main')[0];
   // const mainMenu = {
   //   menu: [
@@ -46,31 +46,60 @@ export default function NavBar({ logo, data }) {
   return (
     <React.Fragment>
       <div>
-        <div sx={{ mb: '0.5rem' }}>
-          <img src="/logo.png" alt="" sx={{ maxWidth: '10rem', display: 'block', mx: 'auto' }} />
+        <div
+          sx={{
+            my: '0.5rem',
+            mx: 'auto',
+            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <Link href="/" passHref>
+            <a sx={{ mx: 'auto' }}>
+              <img
+                src="/logo.png"
+                alt="Tulip"
+                sx={{ maxWidth: '10rem', display: 'block', mx: 'auto' }}
+              />
+            </a>
+          </Link>
         </div>
-        <div sx={{
-          boxShadow: 'inset 0 -15px 5px -16px #111, inset 0 15px 5px -16px #111', display: 'flex', flexWrap: 'wrap', justifyContent: 'center',
-          fontSize: '0.75rem'
-        }}>
+        <div
+          sx={{
+            boxShadow: 'inset 0 -15px 5px -16px #111',
+            // inset 0 15px 5px -16px #111'
+            display: 'flex',
+            justifyContent: [null, null, null, 'center'],
+            fontSize: '0.75rem',
+            overflowX: 'scroll',
+            scrollbarWidth: 'none',
+          }}
+        >
           {mainMenu.menu.map((item) => (
-            <Link href={item.url} key={item.title} passHref>
-              <a sx={{
-                p: '1rem 1.5rem', display: 'block', textTransform: 'uppercase',
-                '&:not(:first-of-type)': {
-                  position: 'relative'
-                },
-                '&:not(:first-of-type)::before': {
-                  borderLeft: '1px solid #ea364a',
-                  content: `""`,
-                  height: '1rem',
-                  left: '-.5px',
-                  overflow: 'hidden',
-                  position: 'absolute',
-
-                }
-              }}>{item.name}</a>
-            </Link>
+            <ActiveLink href={item.url} key={item.title} passHref activeClassName="active">
+              <a
+                sx={{
+                  p: '1rem 1.5rem',
+                  display: 'block',
+                  textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
+                  '&:not(:first-of-type)': {
+                    position: 'relative',
+                  },
+                  '&:not(:first-of-type)::before': {
+                    borderLeft: '1px solid #ea364a',
+                    content: `""`,
+                    height: '1rem',
+                    left: '-.5px',
+                    overflow: 'hidden',
+                    position: 'absolute',
+                  },
+                }}
+              >
+                {item.name}
+              </a>
+            </ActiveLink>
           ))}
         </div>
       </div>
