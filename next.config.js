@@ -22,6 +22,5 @@ module.exports = {
     siteURL: process.env.NEXT_PUBLIC_SITE_URL,
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   },
-  serverRuntimeConfig: {
-  },
+  serverRuntimeConfig: {},
 };
