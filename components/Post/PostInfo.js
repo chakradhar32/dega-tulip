@@ -35,7 +35,7 @@ const PostInfo = ({ users, categories, date }) => (
         {users &&
           users.map((user, i, arr) => (
             <React.Fragment key={i}>
-              <Link passHref href={`/author/${user.id}`}>
+              <Link passHref href={`/author/${user.slug}`}>
                 <a
                   sx={{
                     fontWeight: 'medium',
