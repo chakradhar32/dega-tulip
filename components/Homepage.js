@@ -2,16 +2,15 @@
 /** @jsxRuntime classic */
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
-// import Seo from './Seo';
 import Link from 'next/link';
 import parseDate from '../src/utils/parseDate';
+import StoryCard from 'components/StoryCard';
 
 function Homepage({ data }) {
-  const { posts } = data;
+  const { posts, featuredCategories } = data;
   const featuredPost = posts.nodes[0];
   return (
     <>
-      {/* <Seo title={dega.space.site_title} canonical={dega.space.site_address} type="website" /> */}
       <main sx={{ p: [null, null, null, '2rem'], pt: '2rem' }}>
         {/* Hero Section */}
         <div
@@ -53,7 +52,7 @@ function Homepage({ data }) {
               >
                 <Link passHref href={`/${post.slug}`}>
                   <a>
-                    <img src={post.medium.url.proxy} alt="" />
+                    <img src={post.medium?.url.proxy.replace('/dega.factly.in/','/')} alt="" />
                   </a>
                 </Link>
                 <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
@@ -73,9 +72,10 @@ function Homepage({ data }) {
                     <h3 sx={{ fontSize: '1rem' }}>{post.title}</h3>
                   </a>
                 </Link>
-                <Link key={post.id} href={`/author/${post.users[0].slug}`} passHref>
+                
+                <Link key={post.id} href={`/author/${post?.users[0]?.slug}`} passHref>
                   <a sx={{ fontSize: '0.75rem', textTransform: 'uppercase' }}>
-                    {post.users[0].display_name}
+                    {post?.users[0]?.display_name}
                   </a>
                 </Link>
                 <p sx={{ fontSize: '0.675rem' }}>{parseDate(post.published_date)}</p>
@@ -93,22 +93,22 @@ function Homepage({ data }) {
             }}
           >
             <div>
-              <Link href={`/${featuredPost.slug}`} passHref>
+              <Link href={`/${featuredPost?.slug}`} passHref>
                 <a>
                   <div>
-                    <img src={featuredPost.medium?.url?.proxy} alt={featuredPost.title} />
+                    <img src={featuredPost?.medium?.url?.proxy.replace('/dega.factly.in/','/')} alt={featuredPost?.title} />
                   </div>
 
                   <div sx={{ p: '1rem' }}>
                     <p sx={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#df1c22' }}>
-                      {featuredPost.categories[0].name}
+                      {featuredPost?.categories[0]?.name}
                     </p>
-                    <h2 sx={{ fontSize: '2.25rem' }}>{featuredPost.title}</h2>
-                    <p sx={{ fontSize: '1rem' }}>{featuredPost.excerpt}</p>
+                    <h2 sx={{ fontSize: '2.25rem' }}>{featuredPost?.title}</h2>
+                    <p sx={{ fontSize: '1rem',my:'0.5rem' }}>{featuredPost?.excerpt}</p>
                     <p sx={{ fontSize: '0.75rem', textTransform: 'uppercase' }}>
-                      {featuredPost.users[0].display_name}
+                      {featuredPost?.users[0].display_name}
                     </p>
-                    <p sx={{ fontSize: '0.675rem' }}>{parseDate(featuredPost.published_date)}</p>
+                    <p sx={{ fontSize: '0.675rem' }}>{parseDate(featuredPost?.published_date)}</p>
                   </div>
                 </a>
               </Link>
@@ -166,138 +166,47 @@ function Homepage({ data }) {
                       </a>
                     </Link>
                     <div sx={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                      <Link key={post.id} href={`/author/${post.users[0].slug}`} passHref>
+                      <Link key={post.id} href={`/author/${post?.users[0]?.slug}`} passHref>
                         <a sx={{ fontSize: '0.75rem', textTransform: 'uppercase' }}>
-                          {post.users[0].display_name}
+                          {post?.users[0]?.display_name}
                         </a>
                       </Link>
                       <p sx={{ fontSize: '0.675rem' }}>{parseDate(post.published_date)}</p>
                     </div>
                   </div>
                   <div sx={{ maxWidth: '7.5rem', maxWidth: '25%', flex: '1 0 25%' }}>
-                    <img src={post.medium?.url?.proxy} alt={post.title} />
+                    <img src={post.medium?.url?.proxy.replace('/dega.factly.in/','/')} alt={post.title} />
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Left sidebar */}
-          {/* <div
-          className="sidebar"
-          sx={{
-            display: [null, null, null, null, 'flex'],
-            width: [null, null, null, null, '1/4'],
-            borderRightWidth: 'px',
-            position: 'sticky',
-          }}
-        >
-          <div sx={{ display: 'block' }}>
-            <div
-              sx={{
-                mb: (theme) => `${theme.space.spacing5}`,
-                py: (theme) => `${theme.space.spacing5}`,
-                px: (theme) => `${theme.space.spacing6}`,
-                borderBottomWidth: 'px',
-              }}
-            >
-              <h5 className="heading">Categories</h5>
-              <CategoriesGroup categories={data.categories.nodes} />
-            </div>
-          </div>
-        </div> */}
-          {/* Main/ Middle part of the homepage */}
-          {/* <div
-            className="main-content"
-            sx={{ width: ['full', null, '3/4', null, '2/4'], }}
-          >
-            {/* Featured Card * /}
-            {data.posts.nodes.length > 0 ? (
-              <div className='featured' sx={{
-                transition: 'all 0.5s',
-                '&:hover': { textDecoration: 'none', transform: 'scale(1.04)', },
-              }}>
-                <StoryCard
-                  cardStyle="featured"
-                  storyData={data.posts.nodes[0]}
-                  // imageSize="w-full h-64"
-                  imageSize={{ width: 'full', height: 64 }}
-                />
-              </div>
-
-            ) : null}
-
-            {/* Articles list * /}
-            <div
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                py: (theme) => `${theme.space.spacing6}`,
-              }}
-            >
-              {data?.posts.nodes.slice(1, 20).map((item, index) => (
-                <StoryCard
-                  key={`homepage-post-${index}`}
-                  cardStyle="card"
-                  storyData={item}
-                  imageSize={{
-                    width: ['full', null, '1/3'],
-                    height: [48, null, 'full'],
-                    py: [(theme) => `${theme.space.spacing6}`, null, 0],
-                  }}
-                />
-              ))}
-            </div>
-          </div> */}
-          {/* Right sidebar */}
-          {/* <div
-            className="sidebar"
-            sx={{
-              display: [null, null, null, 'flex'],
-              width: [null, null, null, '2/6', '1/4'],
-              borderLeftWidth: 'px',
-              position: 'sticky',
-            }}
-          >
-            <div sx={{ display: 'block' }}>
-              <div
-                sx={{
-                  mb: (theme) => `${theme.space.spacing5}`,
-                  py: (theme) => `${theme.space.spacing5}`,
-                  px: (theme) => `${theme.space.spacing6}`,
-                  borderBottomWidth: 'px',
-                }}
-              >
-                <h5 sx={{ fontSize: '1.25rem' }}>Recent In Factchecks</h5>
-              </div>
-              {data?.factchecks.nodes.map((item, index) => (
-                <StoryCard
-                  key={`homepage-factcheck-${index}`}
-                  cardStyle="vertical"
-                  storyData={item}
-                  imageSize={{ height: 40 }}
-                />
-              ))}
-            </div>
-          </div> */}
         </div>
         {/* Featured categories Section  */}
         <div>
           {data?.featuredCategories?.nodes.length > 0 &&
-            data.featuredCategories.nodes.map((category) => (
-              <section key={category.id}>
-                <h4 sx={{ borderBottom: '1px solid black' }}>{category.name}</h4>
-                <div>
-                  {category.posts.map((post) => (
-                    <div key={post.id}>
-                      <Link href={`/${post.slug}`} passHref>
-                        <a sx={{ display: 'block' }}>{post.title}</a>
-                      </Link>
+            data.featuredCategories.nodes.map((category) => {
+              return (
+                category.posts.nodes.length > 0 && (
+                  <section key={category.id} sx={{ my: '1.5rem' }}>
+                    <h4 sx={{ borderBottom: '1px solid black', pb: '0.75rem' }}>{category.name}</h4>
+                    <div
+                      sx={{
+                        display: 'grid',
+                        gridTemplateColumns: ['1fr', null, 'repeat( 2, 1fr )', 'repeat( 3, 1fr)'],
+                        px: [null, null, (theme) => `${theme.space.spacing6}`],
+                        mt: (theme) => `${theme.space.spacing7}`,
+                        gridGap: (theme) => `${theme.space.spacing7}`,
+                      }}
+                    >
+                      {category.posts?.nodes.map((post) => (
+                        <StoryCard cardStyle="tulip" key={post.id} storyData={post} />
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </section>
-            ))}
+                  </section>
+                )
+              );
+            })}
         </div>
       </main>
     </>

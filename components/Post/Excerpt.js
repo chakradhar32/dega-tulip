@@ -22,7 +22,7 @@ const Excerpt = ({ excerpt, image }) => (
     {image && (
       <div sx={{ flex: '1 1 0%', width: 'full' }}>
         <img
-          src={image.url.proxy}
+          src={image.url.proxy.replace('/dega.factly.in/','/')}
           alt={image.alt_text}
           sx={{
             width: 'full',

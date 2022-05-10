@@ -19,20 +19,12 @@ const Post = ({ post, observer }) => {
   const headerSocialIcon = createRef();
 
   useEffect(() => {
-    observer.observe(postSection.current);
-    observer.observe(headerSocialIcon.current);
+    {!post.is_page &&  observer.observe(postSection.current);}
+    {!post.is_page &&  observer.observe(headerSocialIcon.current);}
   }, [observer, postSection, headerSocialIcon]);
 
   return (
     <>
-      {/* <Seo title={post.title} description={post.excerpt} />
-      <Helmet>
-        {post.schemas.map((schema, i) => (
-          <script key={i} type="application/ld+json">
-            {JSON.stringify(schema)}
-          </script>
-        ))}
-      </Helmet> */}
       <article
         post={post.id}
         ref={postSection}
@@ -67,7 +59,7 @@ const Post = ({ post, observer }) => {
           >
             {post.title}
           </h1>
-          <div
+          {!post.is_page && <div
             sx={{
               display: 'flex',
               flexDirection: ['column', null, 'row'],
@@ -82,9 +74,9 @@ const Post = ({ post, observer }) => {
                 title: encodeURIComponent(post.title),
               }}
             />
-          </div>
+          </div>}
         </div>
-        <Excerpt excerpt={post.excerpt} image={post.medium} />
+        {!post.is_page &&  <Excerpt excerpt={post.excerpt} image={post.medium} />}
 
         <div
           sx={{

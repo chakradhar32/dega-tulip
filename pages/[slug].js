@@ -10,34 +10,16 @@ import Post from 'components/Post';
 import { client } from 'store/client';
 import Head from 'next/head';
 import parseDate from 'src/utils/parseDate';
+import  StoryCard  from 'components/StoryCard';
 
 export default function PostDetails({ post, posts }) {
-  // const filteredPosts = dega.posts.nodes.filter((post) => post.published_date !== null);
   const filteredPosts = posts.nodes.filter((p) => p.id !== post.id).slice(0, 6);
-  //posts.unshift(dega.post);
 
-  //const [postItems, setPostItems] = React.useState(posts.slice(0, 1));
-  // const [hasNextPage, setHasNextPage] = React.useState(true);
   const [showSocialIcon, setShowSocialIcon] = React.useState(false);
   const [postActiveIndex, setPostActiveIndex] = React.useState(parseInt(post.id));
-  // const [relatedPosts, setRelatedPosts] = React.useState(posts.slice(0, 10));
-  // const [hasNextPageRelatedPost, setHasNextPageRelatedPost] = React.useState(true);
   const [observer, setObserver] = React.useState({
     observe: () => {},
   });
-  // const handleLoadMore = () => {
-  //   if (!hasNextPage) return false;
-  //   const nextPageItems = posts.slice(postItems.length, postItems.length + 1);
-  //   setPostItems([...postItems, ...nextPageItems]);
-  //   setHasNextPage(postItems.length < posts.length);
-  // };
-
-  // const handleLoadMoreRelatedPosts = () => {
-  //   if (!hasNextPageRelatedPost) return false;
-  //   const nextPageItems = posts.slice(relatedPosts.length, relatedPosts.length + 10);
-  //   setRelatedPosts([...relatedPosts, ...nextPageItems]);
-  //   setHasNextPageRelatedPost(relatedPosts.length < posts.length);
-  // };
 
   const handleShowSocialIcon = (entry) => {
     if (entry.intersectionRatio > 0) {
@@ -51,9 +33,6 @@ export default function PostDetails({ post, posts }) {
     const id = entry.target.getAttribute('slug');
     if (entry.intersectionRatio > 0) {
       setPostActiveIndex(id);
-      if (process.browser) {
-        //  window.history.pushState('page2', 'Title', `/${id}`);
-      }
     }
   };
 
@@ -87,14 +66,16 @@ export default function PostDetails({ post, posts }) {
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.medium.url.proxy} />
+        {post.medium && <meta property="og:image" content={post.medium?.url.proxy.replace('/dega.factly.in/','/')} />}
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         {post.schemas &&
           post.schemas.map((schema, i) => (
-            <script key={i} type="application/ld+json">
-              {JSON.stringify(schema)}
-            </script>
+            <script
+              key={i}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            ></script>
           ))}
       </Head>
       <div
@@ -122,21 +103,8 @@ export default function PostDetails({ post, posts }) {
           }}
         >
           <Post post={post} observer={observer} />
-          {/* <InfiniteScroll
-            pageStart={0}
-            loadMore={handleLoadMore}
-            hasMore={hasNextPage}
-            loader={
-              <div className="loader" key={0}>
-                Loading ...
-              </div>
-            }
-          >
-            {postItems.map((item) => (
-              <Post key={`details${item.id}`} post={item} observer={observer} />
-            ))}
-          </InfiniteScroll> */}
-          {showSocialIcon && (
+
+          {showSocialIcon && !post.is_page && (
             <>
               <div
                 className="top-auto"
@@ -214,7 +182,7 @@ export default function PostDetails({ post, posts }) {
               </div>
             </>
           )}
-          <div>
+          {!post.is_page && false && <div>
             <h4>Recent Posts</h4>
             <div sx={{ display: 'flex', flexWrap: 'wrap' }}>
               {filteredPosts.map((p) => (
@@ -229,19 +197,14 @@ export default function PostDetails({ post, posts }) {
                 >
                   <Link href={`/${p.slug}`}>
                     <a sx={{ display: 'flex', cursor: 'pointer' }}>
-                      <div sx={{ flex: '0 0 33%' }}>
-                        <img src={p.medium.url.proxy} alt="" />
-                      </div>
-                      <div sx={{ flex: '0 0 67%', pl: '1rem' }}>
-                        <h5>{p.title}</h5>
-                        <p sx={{ fontSize: '0.75rem' }}>{parseDate(p.published_date)}</p>
-                      </div>
+                      <StoryCard  cardStyle="tulip"
+                  storyData={p} />
                     </a>
                   </Link>
                 </div>
               ))}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </>
@@ -252,8 +215,9 @@ export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query PostQuery($slug: String) {
-        post(slug: $slug) {
+        post(slug: $slug, include_pages:true) {
           published_date
+          is_page
           description
           excerpt
           id

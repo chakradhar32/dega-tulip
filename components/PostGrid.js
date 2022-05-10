@@ -3,8 +3,6 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 import StoryCard from './StoryCard';
-import Link from 'next/link';
-import ActiveLink from './ActiveLink';
 
 const PostGrid = ({ type, posts, formats, item, header, useSlug = true }) => {
   const slug = useSlug ? item.slug : item.id;
@@ -45,7 +43,6 @@ const PostGrid = ({ type, posts, formats, item, header, useSlug = true }) => {
           }}
         >
           {header ? header(item) : defaultHeader(item)}
-          {/* <Tabs baseUrl={`/categories/${dega.category.slug}`} /> */}
           {filteredPosts.length > 0 ? (
             <div
               sx={{

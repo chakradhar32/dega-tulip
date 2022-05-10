@@ -63,6 +63,7 @@ sup {
 img {
   border-style: none;
 }
+img[alt]{font-size:0.75em;}
 button,
 input,
 optgroup,
@@ -482,34 +483,6 @@ div {
     transform: translateY(0);
   }
 }
-
-/* Add read more to any content*/
-/*.read-more-state {
-  display: none;
-}
-
-.read-more-target {
-  opacity: 0;
-  font-size: 0;
-  transition: 0.25s step-start;
-}
-
-.read-more-state:checked ~ .read-more-wrap .read-more-target {
-  opacity: 1;
-  font-size: inherit;
-} 
-
-.read-more-state ~ .read-more-trigger:before {
-  content: 'show more';
-} 
-
-.read-more-state:checked ~ .read-more-trigger:before {
-  content: 'show less';
-}
-
-.read-more-trigger {
-  cursor: pointer;
-} */
 
 .row-list-container section {
   display: flex;

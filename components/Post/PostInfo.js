@@ -20,14 +20,13 @@ const PostInfo = ({ users, categories, date }) => (
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
-      // py: (theme) => `${theme.space.layout1}`,
     }}
   >
     <div
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        // py: (theme) => `${theme.space.layout1}`,
+
         fontSize: (theme) => `${theme.fontSizes.h7}`,
       }}
     >

@@ -10,10 +10,6 @@ import { client } from 'store/client';
 import Head from 'next/head';
 
 function TagDetailsAll({ data }) {
-  //  const { dega } = data;
-  // const formatType = 'fact-check';
-  // const filterPosts = dega.posts.nodes.filter((i) => i.format.slug !== formatType);
-
   const header = (item) => {
     return (
       <div

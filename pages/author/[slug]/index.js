@@ -44,7 +44,7 @@ function UserDetailsAll({ data }) {
       <div sx={{ mb: (theme) => `${theme.space.spacing5}` }}>
         {item.medium && (
           <img
-            src={item.medium?.url.proxy}
+            src={item.medium?.url.proxy.replace('/dega.factly.in/','/')}
             alt=""
             sx={{
               borderRadius: '50%',
@@ -171,7 +171,6 @@ export async function getServerSideProps({ params }) {
       slug: params.slug,
     },
   });
-  console.log({ data, error });
 
   if (!data) {
     return {

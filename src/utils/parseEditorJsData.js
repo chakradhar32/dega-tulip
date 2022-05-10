@@ -5,7 +5,6 @@ import InnerHTML from 'dangerously-set-html-content';
 import { jsx } from 'theme-ui';
 
 const parseEditorJsData = ({ content, scripts = false, amp = false }) => {
-  //  console.log(scripts, amp);
   const patterns = {
     youtube: [
       /^https?:\/\/(?:www\.)?youtube\.com\/(?:tv#\/)?watch\/?\?(?:[^&]+&)*v=([a-zA-Z0-9_-]+)/i,
@@ -203,7 +202,7 @@ const parseEditorJsData = ({ content, scripts = false, amp = false }) => {
                 <figure key={i}>
                   <img
                     // sx={{ mx: 'auto', py: 4 }}
-                    src={data.url.proxy}
+                    src={data.url.proxy.replace('/dega.factly.in/','/')}
                     alt={data.alt_text ? data.alt_text : ''}
                   />
                   {data.caption && <figcaption>{data.caption}</figcaption>}

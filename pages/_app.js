@@ -19,7 +19,6 @@ Router.events.on('routeChangeComplete', () => {
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps, props }) {
-  // return <Component {...pageProps} />;
   return (
     <ThemeProvider theme={theme}>
       <Layout data={props?.layoutData}>
