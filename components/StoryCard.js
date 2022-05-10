@@ -566,7 +566,7 @@ const StoryCard = ({
                     }}
                   >
                     <img
-                      sx={{ height: '100%', objectFit: 'cover' }}
+                      sx={{ height: '100%', objectFit: 'cover',width: 'full', }}
                       src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                     />
                   </a>
