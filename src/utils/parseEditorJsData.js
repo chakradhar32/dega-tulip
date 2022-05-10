@@ -202,7 +202,7 @@ const parseEditorJsData = ({ content, scripts = false, amp = false }) => {
                 <figure key={i}>
                   <img
                     // sx={{ mx: 'auto', py: 4 }}
-                    src={data.url.proxy.replace('/dega.factly.in/','/')}
+                    src={data.url.proxy.replace('/dega.factly.in/', '/')}
                     alt={data.alt_text ? data.alt_text : ''}
                   />
                   {data.caption && <figcaption>{data.caption}</figcaption>}

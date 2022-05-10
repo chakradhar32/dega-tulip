@@ -52,7 +52,7 @@ function Homepage({ data }) {
               >
                 <Link passHref href={`/${post.slug}`}>
                   <a>
-                    <img src={post.medium?.url.proxy.replace('/dega.factly.in/','/')} alt="" />
+                    <img src={post.medium?.url.proxy.replace('/dega.factly.in/', '/')} alt="" />
                   </a>
                 </Link>
                 <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
@@ -72,7 +72,7 @@ function Homepage({ data }) {
                     <h3 sx={{ fontSize: '1rem' }}>{post.title}</h3>
                   </a>
                 </Link>
-                
+
                 <Link key={post.id} href={`/author/${post?.users[0]?.slug}`} passHref>
                   <a sx={{ fontSize: '0.75rem', textTransform: 'uppercase' }}>
                     {post?.users[0]?.display_name}
@@ -96,7 +96,10 @@ function Homepage({ data }) {
               <Link href={`/${featuredPost?.slug}`} passHref>
                 <a>
                   <div>
-                    <img src={featuredPost?.medium?.url?.proxy.replace('/dega.factly.in/','/')} alt={featuredPost?.title} />
+                    <img
+                      src={featuredPost?.medium?.url?.proxy.replace('/dega.factly.in/', '/')}
+                      alt={featuredPost?.title}
+                    />
                   </div>
 
                   <div sx={{ p: '1rem' }}>
@@ -104,7 +107,7 @@ function Homepage({ data }) {
                       {featuredPost?.categories[0]?.name}
                     </p>
                     <h2 sx={{ fontSize: '2.25rem' }}>{featuredPost?.title}</h2>
-                    <p sx={{ fontSize: '1rem',my:'0.5rem' }}>{featuredPost?.excerpt}</p>
+                    <p sx={{ fontSize: '1rem', my: '0.5rem' }}>{featuredPost?.excerpt}</p>
                     <p sx={{ fontSize: '0.75rem', textTransform: 'uppercase' }}>
                       {featuredPost?.users[0].display_name}
                     </p>
@@ -175,7 +178,10 @@ function Homepage({ data }) {
                     </div>
                   </div>
                   <div sx={{ maxWidth: '7.5rem', maxWidth: '25%', flex: '1 0 25%' }}>
-                    <img src={post.medium?.url?.proxy.replace('/dega.factly.in/','/')} alt={post.title} />
+                    <img
+                      src={post.medium?.url?.proxy.replace('/dega.factly.in/', '/')}
+                      alt={post.title}
+                    />
                   </div>
                 </div>
               ))}
@@ -199,7 +205,7 @@ function Homepage({ data }) {
                         gridGap: (theme) => `${theme.space.spacing7}`,
                       }}
                     >
-                      {category.posts?.nodes.map((post) => (
+                      {category.posts?.nodes.slice(0, 6).map((post) => (
                         <StoryCard cardStyle="tulip" key={post.id} storyData={post} />
                       ))}
                     </div>

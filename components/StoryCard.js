@@ -31,7 +31,7 @@ const StoryCard = ({
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          py: (theme) => `${theme.space.spacing6}`,
+          pt: (theme) => `${theme.space.spacing6}`,
           borderRadius: (theme) => `${theme.borderRadius.default}`,
           // boxShadow: (theme) => `${theme.boxShadow.default}`,
           backgroundColor: (theme) => `${theme.colors.background.default}`,
@@ -52,60 +52,52 @@ const StoryCard = ({
             className="tulip"
             sx={{ display: 'flex', flexDirection: 'column', width: 'full', maxWidth: 'full' }}
           >
-            <div sx={{ maxWidth: '100%', width: '100%', display: 'flex', overflow: 'hidden' }}>
-              <div
-                sx={{
-                  paddingBottom: '56.24999999%',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  width: '100%',
-                }}
-              >
-                <div
-                  sx={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: ' 100%',
-                    background: '#eff8fa',
-                  }}
-                >
-                  <Link passHref href={`/${storyData.slug}`}>
-                    <a
+            <Link passHref href={`/${storyData.slug}`}>
+              <a>
+                <div sx={{ maxWidth: '100%', width: '100%', display: 'flex', overflow: 'hidden' }}>
+                  <div
+                    sx={{
+                      paddingBottom: '56.24999999%',
+                      overflow: 'hidden',
+                      position: 'relative',
+                      width: '100%',
+                    }}
+                  >
+                    <div
                       sx={{
-                        zIndex: 20,
-                        display: 'block',
-                        width: '100%',
-                        height: '100%',
                         position: 'absolute',
-                        textDecoration: 'none',
-                        touchAction: 'manipulation',
+                        width: '100%',
+                        height: ' 100%',
+                        background: '#eff8fa',
                       }}
                     >
                       <img
-                        sx={{ height: '100%', objectFit: 'cover' }}
-                        src={storyData.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                        sx={{ height: '100%', objectFit: 'cover', width: '100%' }}
+                        src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                       />
-                    </a>
-                  </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </a>
+            </Link>
             <div
               key={storyData.id}
               sx={{ borderTop: '1px solid #d9d9d9', display: 'block', py: '1rem' }}
             >
-              {storyData?.categories?.length > 0 && <Link key={storyData.id} href={`category/${storyData.categories[0].slug}`} passHref>
-                <a
-                  sx={{
-                    fontSize: '0.75rem',
-                    textTransform: 'uppercase',
-                    color: '#df1c22',
-                    display: 'block',
-                  }}
-                >
-                  {storyData.categories[0].name}
-                </a>
-              </Link>}
+              {storyData?.categories?.length > 0 && (
+                <Link key={storyData.id} href={`category/${storyData.categories[0].slug}`} passHref>
+                  <a
+                    sx={{
+                      fontSize: '0.75rem',
+                      textTransform: 'uppercase',
+                      color: '#df1c22',
+                      display: 'block',
+                    }}
+                  >
+                    {storyData.categories[0].name}
+                  </a>
+                </Link>
+              )}
               <Link key={storyData.id} href={`/${storyData.slug}`} passHref>
                 <a sx={{ display: 'block' }}>
                   <h3 sx={{ fontSize: '1rem' }}>{storyData.title}</h3>
@@ -157,7 +149,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -291,7 +283,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -399,7 +391,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -498,7 +490,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -575,7 +567,7 @@ const StoryCard = ({
                   >
                     <img
                       sx={{ height: '100%', objectFit: 'cover' }}
-                      src={storyData.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                      src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                     />
                   </a>
                 </Link>
@@ -653,7 +645,10 @@ const StoryCard = ({
                   height: '150px',
                   background: 'no-repeat center',
                   backgroundSize: ' cover',
-                  backgroundImage: `url(${storyData.medium?.url.proxy.replace('/dega.factly.in/','/')})`,
+                  backgroundImage: `url(${storyData.medium?.url.proxy.replace(
+                    '/dega.factly.in/',
+                    '/',
+                  )})`,
                   textDecoration: 'none',
                   touchAction: 'manipulation',
                 }}

@@ -47,7 +47,7 @@ export default function NavBar({ logo, data }) {
           <Link href="/" passHref>
             <a sx={{ mx: 'auto' }}>
               <img
-                src={space?.logo?.url?.proxy.replace('/dega.factly.in/','/') || `/logo.png`}
+                src={space?.logo?.url?.proxy.replace('/dega.factly.in/', '/') || `/logo.png`}
                 alt={space.site_title}
                 sx={{ maxWidth: '10rem', display: 'block', mx: 'auto' }}
               />

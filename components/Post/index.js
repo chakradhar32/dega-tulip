@@ -19,8 +19,12 @@ const Post = ({ post, observer }) => {
   const headerSocialIcon = createRef();
 
   useEffect(() => {
-    {!post.is_page &&  observer.observe(postSection.current);}
-    {!post.is_page &&  observer.observe(headerSocialIcon.current);}
+    {
+      !post.is_page && observer.observe(postSection.current);
+    }
+    {
+      !post.is_page && observer.observe(headerSocialIcon.current);
+    }
   }, [observer, postSection, headerSocialIcon]);
 
   return (
@@ -59,24 +63,30 @@ const Post = ({ post, observer }) => {
           >
             {post.title}
           </h1>
-          {!post.is_page && <div
-            sx={{
-              display: 'flex',
-              flexDirection: ['column', null, 'row'],
-              justifyContent: 'space-between',
-            }}
-          >
-            <PostInfo date={post.published_date} users={post.users} categories={post.categories} />
-            <ShareButtonGroup
-              setRef={headerSocialIcon}
-              data={{
-                url: encodeURIComponent(process.browser ? window.location.href : null),
-                title: encodeURIComponent(post.title),
+          {!post.is_page && (
+            <div
+              sx={{
+                display: 'flex',
+                flexDirection: ['column', null, 'row'],
+                justifyContent: 'space-between',
               }}
-            />
-          </div>}
+            >
+              <PostInfo
+                date={post.published_date}
+                users={post.users}
+                categories={post.categories}
+              />
+              <ShareButtonGroup
+                setRef={headerSocialIcon}
+                data={{
+                  url: encodeURIComponent(process.browser ? window.location.href : null),
+                  title: encodeURIComponent(post.title),
+                }}
+              />
+            </div>
+          )}
         </div>
-        {!post.is_page &&  <Excerpt excerpt={post.excerpt} image={post.medium} />}
+        {!post.is_page && <Excerpt excerpt={post.excerpt} image={post.medium} />}
 
         <div
           sx={{

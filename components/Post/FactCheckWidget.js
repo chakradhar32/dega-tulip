@@ -189,7 +189,7 @@ function FactCheckWidget({ claims }) {
                       {claim.claim}
                       {claim.rating.medium && (
                         <img
-                          src={claim.rating.medium?.url.proxy.replace('/dega.factly.in/','/')}
+                          src={claim.rating.medium?.url.proxy.replace('/dega.factly.in/', '/')}
                           alt={claim.rating.medium?.alt_text}
                           //onError={addDefaultSrc}
                           sx={{

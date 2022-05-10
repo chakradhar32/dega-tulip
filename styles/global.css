@@ -63,7 +63,9 @@ sup {
 img {
   border-style: none;
 }
-img[alt]{font-size:0.75em;}
+img[alt] {
+  font-size: 0.75em;
+}
 button,
 input,
 optgroup,

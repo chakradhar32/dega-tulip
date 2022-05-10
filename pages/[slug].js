@@ -10,7 +10,7 @@ import Post from 'components/Post';
 import { client } from 'store/client';
 import Head from 'next/head';
 import parseDate from 'src/utils/parseDate';
-import  StoryCard  from 'components/StoryCard';
+import StoryCard from 'components/StoryCard';
 
 export default function PostDetails({ post, posts }) {
   const filteredPosts = posts.nodes.filter((p) => p.id !== post.id).slice(0, 6);
@@ -66,7 +66,12 @@ export default function PostDetails({ post, posts }) {
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        {post.medium && <meta property="og:image" content={post.medium?.url.proxy.replace('/dega.factly.in/','/')} />}
+        {post.medium && (
+          <meta
+            property="og:image"
+            content={post.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+          />
+        )}
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         {post.schemas &&
@@ -182,29 +187,30 @@ export default function PostDetails({ post, posts }) {
               </div>
             </>
           )}
-          {!post.is_page && false && <div>
-            <h4>Recent Posts</h4>
-            <div sx={{ display: 'flex', flexWrap: 'wrap' }}>
-              {filteredPosts.map((p) => (
-                <div
-                  key={p.id}
-                  sx={{
-                    flex: [null, null, '0 0 50%'],
-                    maxWidth: [null, null, '50%'],
-                    p: '1.5rem',
-                    textAlign: 'left',
-                  }}
-                >
-                  <Link href={`/${p.slug}`}>
-                    <a sx={{ display: 'flex', cursor: 'pointer' }}>
-                      <StoryCard  cardStyle="tulip"
-                  storyData={p} />
-                    </a>
-                  </Link>
-                </div>
-              ))}
+          {!post.is_page && false && (
+            <div>
+              <h4>Recent Posts</h4>
+              <div sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                {filteredPosts.map((p) => (
+                  <div
+                    key={p.id}
+                    sx={{
+                      flex: [null, null, '0 0 50%'],
+                      maxWidth: [null, null, '50%'],
+                      p: '1.5rem',
+                      textAlign: 'left',
+                    }}
+                  >
+                    <Link href={`/${p.slug}`}>
+                      <a sx={{ display: 'flex', cursor: 'pointer' }}>
+                        <StoryCard cardStyle="tulip" storyData={p} />
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>}
+          )}
         </div>
       </div>
     </>
@@ -215,7 +221,7 @@ export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: gql`
       query PostQuery($slug: String) {
-        post(slug: $slug, include_pages:true) {
+        post(slug: $slug, include_pages: true) {
           published_date
           is_page
           description

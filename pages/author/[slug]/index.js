@@ -44,7 +44,7 @@ function UserDetailsAll({ data }) {
       <div sx={{ mb: (theme) => `${theme.space.spacing5}` }}>
         {item.medium && (
           <img
-            src={item.medium?.url.proxy.replace('/dega.factly.in/','/')}
+            src={item.medium?.url.proxy.replace('/dega.factly.in/', '/')}
             alt=""
             sx={{
               borderRadius: '50%',
