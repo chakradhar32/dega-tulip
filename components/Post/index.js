@@ -18,6 +18,8 @@ const Post = ({ post, observer }) => {
   const postSection = useRef(null);
   const headerSocialIcon = createRef();
 
+  const filteredClaims = post.claims?.filter(claim => (claim.review_sources));
+
   useEffect(() => {
     {
       !post.is_page && observer.observe(postSection.current);
@@ -142,6 +144,28 @@ const Post = ({ post, observer }) => {
                 </div>
               </React.Fragment>
             ))}
+          {/* Review Sources */}
+          {filteredClaims?.length > 0 && <div sx={{ mt: '1rem' }}>
+            <h4 sx={{ mb: '0.75rem', fontSize: '1.125rem' }}>Sources:</h4>
+            {filteredClaims.map((claim, i) => (
+              <React.Fragment key={i}>
+                {filteredClaims.length > 1 && <p sx={{ mb: '0.25rem', fontSize: '1rem' }}><strong>Claim:</strong> {claim.claim}</p>}
+                {claim.review_sources.map((review, i) => (
+                  <a href={review.url} key={i} sx={{
+                    fontSize: '0.875rem',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                      color: 'textLinkHoverPrimary',
+
+                    }
+                  }}>{`${review.description}, ${review.url}`}</a>
+                ))}
+              </React.Fragment>
+            ))}
+          </div>}
+
+
+
           <div
             sx={{
               display: 'flex',
