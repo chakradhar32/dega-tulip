@@ -99,6 +99,7 @@ function Homepage({ data }) {
                     <img
                       src={featuredPost?.medium?.url?.proxy.replace('/dega.factly.in/', '/')}
                       alt={featuredPost?.title}
+                      sx={{ width: '100%', maxHeight: '25rem', objectFit: 'cover' }}
                     />
                   </div>
 

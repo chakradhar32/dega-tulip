@@ -41,7 +41,7 @@ function UserDetailsAll({ data }) {
 
   const header = (item) => {
     return (
-      <div sx={{ mb: (theme) => `${theme.space.spacing5}` }}>
+      <div sx={{ mb: (theme) => `${theme.space.spacing5}`, px: (theme) => theme.space.layout2, }}>
         {item.medium && (
           <img
             src={item.medium?.url.proxy.replace('/dega.factly.in/', '/')}
@@ -60,7 +60,6 @@ function UserDetailsAll({ data }) {
             fontSize: (theme) => `${theme.fontSizes.h4}`,
             mb: (theme) => `${theme.space.spacing5}`,
             textTransform: 'capitalize',
-            px: (theme) => theme.space.layout2,
           }}
         >
           {name}
@@ -69,7 +68,7 @@ function UserDetailsAll({ data }) {
           <p sx={{ pb: (theme) => `${theme.space.spacing5}` }}>{item.description}</p>
         )}
 
-        <div sx={{ display: 'flex', justifyContent: 'center' }}>
+        <div sx={{ display: 'flex' }}>
           {item.social_media_urls &&
             Object.keys(item.social_media_urls).map((name) => (
               <a
