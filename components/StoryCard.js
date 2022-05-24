@@ -73,7 +73,7 @@ const StoryCard = ({
                     >
                       <img
                         sx={{ height: '100%', objectFit: 'cover', width: '100%' }}
-                        src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                        src={storyData.medium?.url.proxy}
                       />
                     </div>
                   </div>
@@ -149,7 +149,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                  src={storyData.medium?.url.proxy}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -283,7 +283,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                  src={storyData.medium?.url.proxy}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -391,7 +391,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                  src={storyData.medium?.url.proxy}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -490,7 +490,7 @@ const StoryCard = ({
               {storyData.medium && (
                 <img
                   alt={storyData.medium?.alt_text}
-                  src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                  src={storyData.medium?.url.proxy}
                   sx={{
                     height: 'full',
                     width: 'full',
@@ -567,7 +567,7 @@ const StoryCard = ({
                   >
                     <img
                       sx={{ height: '100%', objectFit: 'cover',width: 'full', }}
-                      src={storyData.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                      src={storyData.medium?.url.proxy}
                     />
                   </a>
                 </Link>

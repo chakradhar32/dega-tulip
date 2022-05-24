@@ -52,7 +52,7 @@ function Homepage({ data }) {
               >
                 <Link passHref href={`/${post.slug}`}>
                   <a>
-                    <img src={post.medium?.url.proxy.replace('/dega.factly.in/', '/')} alt="" />
+                    <img src={post.medium?.url.proxy} alt="" />
                   </a>
                 </Link>
                 <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
@@ -97,7 +97,7 @@ function Homepage({ data }) {
                 <a>
                   <div>
                     <img
-                      src={featuredPost?.medium?.url?.proxy.replace('/dega.factly.in/', '/')}
+                      src={featuredPost?.medium?.url?.proxy}
                       alt={featuredPost?.title}
                       sx={{ width: '100%', maxHeight: '25rem', objectFit: 'cover' }}
                     />
@@ -180,7 +180,7 @@ function Homepage({ data }) {
                   </div>
                   <div sx={{ maxWidth: '7.5rem', maxWidth: '25%', flex: '1 0 25%' }}>
                     <img
-                      src={post.medium?.url?.proxy.replace('/dega.factly.in/', '/')}
+                      src={post.medium?.url?.proxy}
                       alt={post.title}
                     />
                   </div>

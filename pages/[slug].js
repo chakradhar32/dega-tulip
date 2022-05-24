@@ -69,7 +69,7 @@ export default function PostDetails({ post, posts }) {
         {post.medium && (
           <meta
             property="og:image"
-            content={post.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+            content={post.medium?.url.proxy}
           />
         )}
         <meta property="og:url" content={url} />

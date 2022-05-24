@@ -13,7 +13,7 @@ import parseEditorJsData from '../../src/utils/parseEditorJsData';
  * TODO: Fix the resize issue on canvas for basic widget
  */
 
-function FactCheckWidget({ claims }) {
+const FactCheckWidget = ({ claims }) => {
   const sliderElement = useRef(null);
   const [scrollWidth, setScrollWidth] = useState(0);
 
@@ -145,7 +145,6 @@ function FactCheckWidget({ claims }) {
                   flex: 'none',
                   width: 'full',
                   scrollSnapAlign: 'start',
-                  mr: (theme) => `${theme.space.spacing6}`,
                 }}
               >
                 <div
@@ -189,7 +188,7 @@ function FactCheckWidget({ claims }) {
                       {claim.claim}
                       {claim.rating.medium && (
                         <img
-                          src={claim.rating.medium?.url.proxy.replace('/dega.factly.in/', '/')}
+                          src={claim.rating.medium?.url.proxy}
                           alt={claim.rating.medium?.alt_text}
                           //onError={addDefaultSrc}
                           sx={{
@@ -225,6 +224,6 @@ function FactCheckWidget({ claims }) {
       )}
     </div>
   );
-}
+};
 
 export default FactCheckWidget;
