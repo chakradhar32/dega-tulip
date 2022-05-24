@@ -72,7 +72,6 @@ MyApp.getInitialProps = async (appContext) => {
       }
     `,
   });
-
   return {
     props: {
       ...appProps,
