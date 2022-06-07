@@ -37,18 +37,18 @@ function FormatPage({ data }) {
             <div
               sx={{
                 display: 'grid',
-                gridTemplateColumns: ['1fr', null, 'repeat(2, 1fr)', 'repeat(3,1fr)'],
-                gridGap: (theme) => `${theme.space.spacing6}`,
+                gridTemplateColumns: ['1fr', null, 'repeat( 2, 1fr )', 'repeat( 3, 1fr)'],
                 px: [null, null, (theme) => `${theme.space.spacing6}`],
+                mt: (theme) => `${theme.space.spacing7}`,
+                gridGap: (theme) => `${theme.space.spacing7}`,
               }}
             >
               {filteredPosts.map((item, index) => (
                 <StoryCard
                   key={index}
-                  cardStyle="iframely"
+                  cardStyle="tulip"
                   storyData={item}
                   excerpt={item.format.slug !== 'fact-check'}
-                  imageSize="w-full md:w-1/3 h-48 md:h-full py-4 md:py-4"
                 />
               ))}
             </div>

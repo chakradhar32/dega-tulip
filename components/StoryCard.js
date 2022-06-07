@@ -31,7 +31,7 @@ const StoryCard = ({
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          pt: (theme) => `${theme.space.spacing6}`,
+          // pt: (theme) => `${theme.space.spacing6}`,
           borderRadius: (theme) => `${theme.borderRadius.default}`,
           // boxShadow: (theme) => `${theme.boxShadow.default}`,
           backgroundColor: (theme) => `${theme.colors.background.default}`,
@@ -82,7 +82,7 @@ const StoryCard = ({
             </Link>
             <div
               key={storyData.id}
-              sx={{ borderTop: '1px solid #d9d9d9', display: 'block', py: '1rem' }}
+              sx={{ borderTop: '1px solid #d9d9d9', display: 'block', py: '1rem', px: ['1rem', 0] }}
             >
               {storyData?.categories?.length > 0 && (
                 <Link key={storyData.id} href={`category/${storyData.categories[0].slug}`} passHref>
@@ -156,7 +156,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                  // onError={addDefaultSrc}
+                // onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -290,7 +290,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                  // onError={addDefaultSrc}
+                // onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -398,7 +398,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                  // onError={addDefaultSrc}
+                // onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -497,7 +497,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                  //onError={addDefaultSrc}
+                //onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -566,7 +566,7 @@ const StoryCard = ({
                     }}
                   >
                     <img
-                      sx={{ height: '100%', objectFit: 'cover',width: 'full', }}
+                      sx={{ height: '100%', objectFit: 'cover', width: 'full', }}
                       src={storyData.medium?.url.proxy}
                     />
                   </a>
