@@ -10,81 +10,81 @@ import { client } from 'store/client';
 import Head from 'next/head';
 
 function CategoryDetailsAll({ data }) {
-    const [readMore, setReadMore] = React.useState(true);
-    const [isReadMoreNeeded, setIsReadMoreNeeded] = useState(false);
+  const [readMore, setReadMore] = React.useState(true);
+  const [isReadMoreNeeded, setIsReadMoreNeeded] = useState(false);
 
-    useEffect(() => {
-        if (process.browser) {
-            const el = document.getElementById('category-description');
-            setIsReadMoreNeeded(el?.clientHeight < el?.scrollHeight);
-        }
-    }, []);
+  useEffect(() => {
+    if (process.browser) {
+      const el = document.getElementById('category-description');
+      setIsReadMoreNeeded(el?.clientHeight < el?.scrollHeight);
+    }
+  }, []);
 
-    const header = (item) => {
-        return (
-            <div
-                sx={{
-                    mb: (theme) => `${theme.space.spacing6}`,
-                    fontSize: (theme) => `${theme.fontSizes.h6}`,
-                }}
-            >
-                <h1
-                    sx={{
-                        fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-                        mb: (theme) => `${theme.space.spacing5}`,
-                        textTransform: 'capitalize',
-                        px: (theme) => theme.space.layout2,
-                    }}
-                >
-                    {item.name}
-                </h1>
-                <div
-                    id="category-description"
-                    sx={{
-                        maxHeight: (theme) => (readMore ? `calc(${theme.lineHeights.normal}em * 6 )` : '100%'),
-                        overflow: 'hidden',
-                        px: (theme) => `${theme.space.spacing5}`,
-                    }}
-                >
-                    {parseEditorJsData({ content: item.description })}
-                </div>
-                {item.description && isReadMoreNeeded && (
-                    <button
-                        type="button"
-                        onClick={() => setReadMore((prev) => !prev)}
-                        sx={{
-                            px: (theme) => `${theme.space.spacing5}`,
-                            color: (theme) => `${theme.colors.textLinkPrimary}`,
-                            fontSize: (theme) => `${theme.fontSizes.h6}`,
-                        }}
-                    >
-                        {readMore ? 'Read more' : 'Read less'}
-                    </button>
-                )}
-            </div>
-        );
-    };
+  const header = (item) => {
     return (
-        <>
-            <Head>
-                <title> {data.category.name} </title>
-            </Head>
-            <PostGrid
-                type="category"
-                posts={data.posts.nodes}
-                formats={data.formats.nodes}
-                item={data.category}
-                header={header}
-            />
-        </>
+      <div
+        sx={{
+          mb: (theme) => `${theme.space.spacing6}`,
+          fontSize: (theme) => `${theme.fontSizes.h6}`,
+        }}
+      >
+        <h1
+          sx={{
+            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
+            mb: (theme) => `${theme.space.spacing5}`,
+            textTransform: 'capitalize',
+            px: (theme) => theme.space.layout2,
+          }}
+        >
+          {item.name}
+        </h1>
+        <div
+          id="category-description"
+          sx={{
+            maxHeight: (theme) => (readMore ? `calc(${theme.lineHeights.normal}em * 6 )` : '100%'),
+            overflow: 'hidden',
+            px: (theme) => `${theme.space.spacing5}`,
+          }}
+        >
+          {parseEditorJsData({ content: item.description })}
+        </div>
+        {item.description && isReadMoreNeeded && (
+          <button
+            type="button"
+            onClick={() => setReadMore((prev) => !prev)}
+            sx={{
+              px: (theme) => `${theme.space.spacing5}`,
+              color: (theme) => `${theme.colors.textLinkPrimary}`,
+              fontSize: (theme) => `${theme.fontSizes.h6}`,
+            }}
+          >
+            {readMore ? 'Read more' : 'Read less'}
+          </button>
+        )}
+      </div>
     );
+  };
+  return (
+    <>
+      <Head>
+        <title> {data.category.name} </title>
+      </Head>
+      <PostGrid
+        type="category"
+        posts={data.posts.nodes}
+        formats={data.formats.nodes}
+        item={data.category}
+        header={header}
+      />
+    </>
+  );
 }
 
 export default CategoryDetailsAll;
 
 export async function getServerSideProps({ params }) {
-    const { data } = await client.query({
-        query: gql`
+  const { data } = await client.query({
+    query: gql`
       query ($slug: String!) {
         category(slug: $slug) {
           description
@@ -137,20 +137,20 @@ export async function getServerSideProps({ params }) {
         }
       }
     `,
-        variables: {
-            slug: params.slug,
-        },
-    });
+    variables: {
+      slug: params.slug,
+    },
+  });
 
-    if (!data || !data.category) {
-        return {
-            notFound: true,
-        };
-    }
-
+  if (!data || !data.category) {
     return {
-        props: {
-            data,
-        },
+      notFound: true,
     };
+  }
+
+  return {
+    props: {
+      data,
+    },
+  };
 }
