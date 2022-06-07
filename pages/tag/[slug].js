@@ -10,48 +10,49 @@ import { client } from 'store/client';
 import Head from 'next/head';
 
 function TagDetailsAll({ data }) {
-  const header = (item) => {
+    const header = (item) => {
+        return (
+            <div
+                sx={{
+                    mb: (theme) => `${theme.space.spacing6}`,
+
+                    fontSize: (theme) => `${theme.fontSizes.h6}`,
+                }}
+            >
+                <h1
+                    sx={{
+                        fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
+                        mb: (theme) => `${theme.space.spacing5}`,
+                        textTransform: 'capitalize',
+                        px: (theme) => theme.space.layout2,
+                    }}
+                >
+                    {item.name}
+                </h1>
+            </div>
+        );
+    };
     return (
-      <div
-        sx={{
-          mb: (theme) => `${theme.space.spacing6}`,
-          fontSize: (theme) => `${theme.fontSizes.h6}`,
-        }}
-      >
-        <h1
-          sx={{
-            fontSize: [(theme) => `${theme.fontSizes.h5}`, (theme) => `${theme.fontSizes.h4}`],
-            mb: (theme) => `${theme.space.spacing5}`,
-            textTransform: 'capitalize',
-            px: (theme) => theme.space.layout2,
-          }}
-        >
-          {item.name}
-        </h1>
-      </div>
+        <>
+            <Head>
+                <title> {data.tag.name} </title>
+            </Head>
+            <PostGrid
+                type="tag"
+                posts={data.posts.nodes}
+                formats={data.formats.nodes}
+                item={data.tag}
+                header={header}
+            />
+        </>
     );
-  };
-  return (
-    <>
-      <Head>
-        <title> {data.tag.name} </title>
-      </Head>
-      <PostGrid
-        type="tag"
-        posts={data.posts.nodes}
-        formats={data.formats.nodes}
-        item={data.tag}
-        header={header}
-      />
-    </>
-  );
 }
 
 export default TagDetailsAll;
 
 export async function getServerSideProps({ params }) {
-  const { data } = await client.query({
-    query: gql`
+    const { data } = await client.query({
+        query: gql`
       query ($slug: String!) {
         tag(slug: $slug) {
           description
@@ -97,20 +98,20 @@ export async function getServerSideProps({ params }) {
         }
       }
     `,
-    variables: {
-      slug: params.slug,
-    },
-  });
+        variables: {
+            slug: params.slug,
+        },
+    });
 
-  if (!data) {
+    if (!data) {
+        return {
+            notFound: true,
+        };
+    }
+
     return {
-      notFound: true,
+        props: {
+            data,
+        },
     };
-  }
-
-  return {
-    props: {
-      data,
-    },
-  };
 }
