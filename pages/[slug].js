@@ -66,12 +66,7 @@ export default function PostDetails({ post, posts }) {
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
-        {post.medium && (
-          <meta
-            property="og:image"
-            content={post.medium?.url.proxy}
-          />
-        )}
+        {post.medium && <meta property="og:image" content={post.medium?.url.proxy} />}
         <meta property="og:url" content={url} />
         <meta property="og:type" content="article" />
         {post.schemas &&

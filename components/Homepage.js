@@ -55,18 +55,20 @@ function Homepage({ data }) {
                     <img src={post.medium?.url.proxy} alt="" />
                   </a>
                 </Link>
-                <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
-                  <a
-                    sx={{
-                      fontSize: '0.75rem',
-                      textTransform: 'uppercase',
-                      color: '#df1c22',
-                      display: 'block',
-                    }}
-                  >
-                    {post.categories.length > 0 ? post.categories[0].name : ''}
-                  </a>
-                </Link>
+                {post.categories.length > 0 && (
+                  <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
+                    <a
+                      sx={{
+                        fontSize: '0.75rem',
+                        textTransform: 'uppercase',
+                        color: '#df1c22',
+                        display: 'block',
+                      }}
+                    >
+                      {post.categories[0].name}
+                    </a>
+                  </Link>
+                )}
                 <Link key={post.id} href={`/${post.slug}`} passHref>
                   <a sx={{ display: 'block' }}>
                     <h3 sx={{ fontSize: '1rem' }}>{post.title}</h3>
@@ -152,18 +154,20 @@ function Homepage({ data }) {
                   }}
                 >
                   <div>
-                    <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
-                      <a
-                        sx={{
-                          fontSize: '0.75rem',
-                          textTransform: 'uppercase',
-                          color: '#df1c22',
-                          display: 'block',
-                        }}
-                      >
-                        {post.categories.length > 0 ? post.categories[0].name : ''}
-                      </a>
-                    </Link>
+                    {post.categories.length > 0 && (
+                      <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
+                        <a
+                          sx={{
+                            fontSize: '0.75rem',
+                            textTransform: 'uppercase',
+                            color: '#df1c22',
+                            display: 'block',
+                          }}
+                        >
+                          {post.categories[0].name}
+                        </a>
+                      </Link>
+                    )}
                     <Link key={post.id} href={`/${post.slug}`} passHref>
                       <a sx={{ display: 'block' }}>
                         <h3 sx={{ fontSize: '1rem' }}>{post.title}</h3>
@@ -179,10 +183,7 @@ function Homepage({ data }) {
                     </div>
                   </div>
                   <div sx={{ maxWidth: '7.5rem', maxWidth: '25%', flex: '1 0 25%' }}>
-                    <img
-                      src={post.medium?.url?.proxy}
-                      alt={post.title}
-                    />
+                    <img src={post.medium?.url?.proxy} alt={post.title} />
                   </div>
                 </div>
               ))}

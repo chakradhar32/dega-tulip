@@ -156,7 +156,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                // onError={addDefaultSrc}
+                  // onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -290,7 +290,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                // onError={addDefaultSrc}
+                  // onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -398,7 +398,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                // onError={addDefaultSrc}
+                  // onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -497,7 +497,7 @@ const StoryCard = ({
                     objectFit: 'cover',
                     borderRadius: 'default',
                   }}
-                //onError={addDefaultSrc}
+                  //onError={addDefaultSrc}
                 />
               )}
             </div>
@@ -566,7 +566,7 @@ const StoryCard = ({
                     }}
                   >
                     <img
-                      sx={{ height: '100%', objectFit: 'cover', width: 'full', }}
+                      sx={{ height: '100%', objectFit: 'cover', width: 'full' }}
                       src={storyData.medium?.url.proxy}
                     />
                   </a>
