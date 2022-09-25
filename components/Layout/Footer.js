@@ -3,7 +3,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import { jsx } from 'theme-ui';
 
-const FooterTwo = () => (
+const Footer = () => (
   <footer
     sx={{
       width: '100%',
@@ -17,4 +17,4 @@ const FooterTwo = () => (
   </footer>
 );
 
-export default FooterTwo;
+export default Footer;

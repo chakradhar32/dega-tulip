@@ -1,15 +1,19 @@
 {
   "name": "dega-tulip",
   "version": "0.1.0",
+  "description": "Inspired by the design of the Tripoli theme by Aspire Themes",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format:check": "prettier --check \"**/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,yml,yaml,json,css,scss,md,mjs}\""
   },
   "dependencies": {
     "@apollo/client": "^3.6.2",
+    "@factly/scooter": "^0.0.7",
     "dangerously-set-html-content": "^1.0.9",
     "graphql": "^16.4.0",
     "graphql-tag": "^2.12.6",

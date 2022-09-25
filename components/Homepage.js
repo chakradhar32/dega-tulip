@@ -56,7 +56,7 @@ function Homepage({ data }) {
                   </a>
                 </Link>
                 {post.categories.length > 0 && (
-                  <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
+                  <Link key={post.id} href={`/category/${post.categories[0].slug}`} passHref>
                     <a
                       sx={{
                         fontSize: '0.75rem',
@@ -155,7 +155,7 @@ function Homepage({ data }) {
                 >
                   <div>
                     {post.categories.length > 0 && (
-                      <Link key={post.id} href={`category/${post.categories[0].slug}`} passHref>
+                      <Link key={post.id} href={`/category/${post.categories[0].slug}`} passHref>
                         <a
                           sx={{
                             fontSize: '0.75rem',

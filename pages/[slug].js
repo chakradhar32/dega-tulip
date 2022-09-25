@@ -220,6 +220,7 @@ export async function getServerSideProps({ params }) {
           published_date
           is_page
           description
+          description_html
           excerpt
           id
           schemas

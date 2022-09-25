@@ -85,7 +85,11 @@ const StoryCard = ({
               sx={{ borderTop: '1px solid #d9d9d9', display: 'block', py: '1rem', px: ['1rem', 0] }}
             >
               {storyData?.categories?.length > 0 && (
-                <Link key={storyData.id} href={`category/${storyData.categories[0].slug}`} passHref>
+                <Link
+                  key={storyData.id}
+                  href={`/category/${storyData.categories[0].slug}`}
+                  passHref
+                >
                   <a
                     sx={{
                       fontSize: '0.75rem',

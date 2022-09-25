@@ -7,7 +7,7 @@ import ShareButtonGroup from './ShareButtonGroup';
 import FactCheckWidget from './FactCheckWidget';
 import Tag from './Tag';
 import Excerpt from './Excerpt';
-import parseEditorJsData from '../../src/utils/parseEditorJsData';
+import parseTiptapContent from '../../src/utils/parseTipTapEditorData';
 /**
  * TODO: URI encoding
  * TODO: borderradius in theme ui
@@ -99,7 +99,7 @@ const Post = ({ post, observer }) => {
         >
           {post.claims && <FactCheckWidget claims={post.claims} />}
           <div className="parsed">
-            {parseEditorJsData({ content: post.description, scripts: true })}
+            {process.browser && parseTiptapContent(post.description_html)}
           </div>
           {post.claims &&
             post.claims.map((claim, i) => (
@@ -140,7 +140,7 @@ const Post = ({ post, observer }) => {
                 )}
 
                 <div className="parsed">
-                  {parseEditorJsData({ content: claim.description, scripts: true })}
+                  {process.browser && parseTiptapContent(post.description_html)}
                 </div>
               </React.Fragment>
             ))}

@@ -17,6 +17,7 @@ export async function getServerSideProps(context) {
         featuredCategories(featuredCount: 4, postLimit: 20) {
           nodes {
             name
+            slug
             posts {
               nodes {
                 users {

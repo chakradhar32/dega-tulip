@@ -8,6 +8,7 @@ import PostGrid from 'components/PostGrid';
 
 import { client } from 'store/client';
 import Head from 'next/head';
+import parseTiptapContent from '../../src/utils/parseTipTapEditorData';
 
 function CategoryDetailsAll({ data }) {
   const [readMore, setReadMore] = React.useState(true);
@@ -46,7 +47,7 @@ function CategoryDetailsAll({ data }) {
             px: (theme) => `${theme.space.spacing5}`,
           }}
         >
-          {parseEditorJsData({ content: item.description })}
+          {process.browser && parseTiptapContent(item.description_html)}
         </div>
         {item.description && isReadMoreNeeded && (
           <button
@@ -88,6 +89,7 @@ export async function getServerSideProps({ params }) {
       query ($slug: String!) {
         category(slug: $slug) {
           description
+          description_html
           id
           medium {
             alt_text
