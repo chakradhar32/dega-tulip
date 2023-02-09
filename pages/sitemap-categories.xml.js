@@ -57,12 +57,6 @@ export async function getServerSideProps({ res }) {
   res.write(sitemap);
   res.end();
 
-  if (!data || !data.sitemap) {
-    return {
-      notFound: true,
-    };
-  }
-
   return {
     props: {},
   };
