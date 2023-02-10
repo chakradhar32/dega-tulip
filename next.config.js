@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === 'production' ? '' : process.env.NEXT_PUBLIC_BASE_PATH;
+const basePath = process.NODE_ENV === 'production' ? '' : process.env.NEXT_PUBLIC_BASE_PATH;
 
 module.exports = {
   reactStrictMode: true,
@@ -22,5 +22,7 @@ module.exports = {
     siteURL: process.env.NEXT_PUBLIC_SITE_URL,
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   },
-  serverRuntimeConfig: {},
+  serverRuntimeConfig: {
+
+  },
 };
