@@ -11,7 +11,7 @@ function generateSiteMap(posts) {
      <!--We manually set the two URLs we know already-->
      
      <url>
-      <loc>${`${publicRuntimeConfig.siteURL}/sitemap-pages.xml/`}</loc>
+      <loc>${`${publicRuntimeConfig.siteURL}/sitemap-posts.xml/`}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>

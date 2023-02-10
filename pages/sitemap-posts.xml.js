@@ -26,7 +26,7 @@ function generateSiteMap(posts) {
  `;
 }
 
-function SiteMapPage() {
+function SiteMapPost() {
   // getServerSideProps will do the heavy lifting
 }
 
@@ -61,4 +61,4 @@ export async function getServerSideProps({ res }) {
   };
 }
 
-export default SiteMapPage;
+export default SiteMapPost;
