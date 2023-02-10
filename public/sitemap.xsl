@@ -94,9 +94,6 @@
                         <xsl:value-of select="position()"/>
                     </xsl:variable>
                     <td>
-                        <xsl:value-of select="$pno"/>
-                    </td>
-                    <td>
                         <a href="{$loc}">
                             <xsl:value-of select="sm:loc"/>
                         </a>
@@ -110,7 +107,6 @@
     <xsl:template match="sm:urlset">
         <table cellSpacing="0" cellPadding="0" border="0">
             <tr>
-                <th></th>
                 <th>URL</th>
                 <xsl:if test="sm:url/sm:lastmod">
                     <th>Last Modified</th>
@@ -130,9 +126,6 @@
                     <xsl:variable name="pno">
                         <xsl:value-of select="position()"/>
                     </xsl:variable>
-                    <td>
-                        <xsl:value-of select="$pno"/>
-                    </td>
                     <td>
                         <p>
                             <a href="{$loc}">
